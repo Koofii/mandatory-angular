@@ -1,0 +1,25 @@
+<div class="task">
+  <div class="header">
+      <div>
+        {{task.title}}
+      </div>
+      <!-- Markup for dropdown menu here... -->
+  </div>
+  <hr>
+  <div class="body">
+      {{task.description}}
+  </div>
+  <select 
+    id="status-type"
+    name="selectedStatusType"
+
+    ngModel
+    #selectedStatusType="ngModel"
+    (change)="handleStatusChanged(task.id, selectedStatusType.value)">
+    <option
+    *ngFor="let st of utilService.getStatusTypes()"
+    >
+      {{st}}
+    </option>
+  </select>
+</div>

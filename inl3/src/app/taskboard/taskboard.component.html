@@ -1,0 +1,29 @@
+<div class="board">
+
+  <!-- Add click event binding for this button... -->
+  <button 
+    style="margin: 20px 0"
+    (click)="toggle = !toggle"
+    >
+    New Task
+  </button>
+
+
+
+
+  <task-form *ngIf="toggle"></task-form>
+  
+
+
+
+
+  <div class="lists">
+
+    <task-list
+      *ngFor="let st of status"
+      [status]="st"
+    ></task-list>
+
+    <!-- Markup for task lists here... -->
+  </div>
+</div>
