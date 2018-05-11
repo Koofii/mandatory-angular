@@ -2,29 +2,51 @@
 <!--  required, min.length > 3 -->
 <form 
   style="margin-bottom: 10px"
-  > 
-
+  #f="ngForm"
+  >
   <!-- Apply ngModel to this input... -->
   <input
-      class="input"
-      type="text"
-      placeholder="title"
-      #title
+    class="input"
+    placeholder="title"
+    id="title"
+    name="title"
+
+    ngModel
+    #title="ngModel"
+
+    required
+    minlength="3"
+    maxlength="30"
   />
   <!-- Markup for error messages... -->
-  <div class="error">
+  <div 
+    class="error"
+    *ngIf="!title.valid && title.touched || !title.valid && title.dirty"
+    >
+    <div
+      *ngIf="title.errors.required"
+    >
+      Title is required
+    </div>
+    <div
+      *ngIf="title.errors.minlength"
+    >
+      Title should be more than {{title.errors.minlength.requiredLength}} characters
+    </div>
   </div>
 
-  <!-- Apply ngModel to this input... -->
+  <!-- Apply ngModel to this input... BUT WHY !?!?!?!?!?!-->
   <input
       class="input"
       type="text"
+
       placeholder="description"
       #description
   />
-
   <!-- Disable button if form is invalid. -->
-  <button type="submit" (click)="createTask(title.value, description.value); description.value=''; title.value=''">
+  <button 
+    [disabled]="!f.valid"
+    (click)="createTask(title.value, description.value); f.reset()">
       Save
   </button>
 </form>

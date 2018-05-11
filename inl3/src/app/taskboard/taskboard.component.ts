@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { UtilService } from '../util.service';
 
 @Component({
@@ -7,6 +7,8 @@ import { UtilService } from '../util.service';
   styleUrls: ['./taskboard.component.css']
 })
 export class TaskboardComponent {
+
+  @Input() toggle;
 
   status = this.utilService.getStatusTypes();
   

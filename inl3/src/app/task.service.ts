@@ -10,12 +10,12 @@ export class TaskService {
   // an internal array of Task objects
   // an instance of BehaviorSubject
 
-   getTasks(status: StatusType): Observable<Task[]> {
-     // return an observable of a task array, filtered by the passed in status..
-     // assuming this.subject exists...
+  getTasks(status: StatusType): Observable<Task[]> {
+    // return an observable of a task array, filtered by the passed in status..
+    // assuming this.subject exists...
     return this.subject.asObservable()
     .map(tasks => tasks.filter(task => task.status === status));
-   }
+  }
 
   private taskId = 0; //taskId startvärde
   private tasks: Task[] =[];  //tasks ska reflektera interfacet Task
@@ -24,9 +24,8 @@ export class TaskService {
   subject = new BehaviorSubject([])
   
   
-
   updateTask(id: number, status: StatusType) {
-    this.tasks.map( task =>  task.id === id ? task.status = status : task)
+    this.tasks.map(task =>  task.id === id ? task.status = status : task)
     console.log(this.tasks)
     this.updateSubscribers();
   }

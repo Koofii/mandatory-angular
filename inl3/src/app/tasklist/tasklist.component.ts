@@ -13,6 +13,7 @@ export class TasklistComponent implements OnInit, OnDestroy {
   subscription;
 
   tasks = []
+  
 
   @Input() status
 

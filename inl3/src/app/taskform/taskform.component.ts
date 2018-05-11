@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { TaskService } from '../task.service';
 
 @Component({
@@ -8,10 +8,12 @@ import { TaskService } from '../task.service';
 })
 export class TaskformComponent {
 
+  @Output() eventObject = new EventEmitter();
+
   constructor(private taskService: TaskService) {}
 
   createTask(title, description){
-    this.taskService.addTask(title, description)
+    this.taskService.addTask(title, description);
+    this.eventObject.emit();
   }
-
 }

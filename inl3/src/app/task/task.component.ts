@@ -13,12 +13,12 @@ export class TaskComponent {
   @Input() task;
   @Output() statusChanged = new EventEmitter();
 
+  statusTypes = this.utilService.getStatusTypes();
+
   constructor(private utilService: UtilService) {}
   
-  handleStatusChanged(id, status){
-    
+  handleStatusChanged(status){
     this.task.status = status
     this.statusChanged.emit(this.task)
   }
-  
 }  
